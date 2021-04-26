@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS account;
 CREATE TABLE account(
     id BIGINT AUTO_INCREMENT,
     email VARCHAR(28) NOT NULL,
+    name VARCHAR(28) NOT NULL,
 
     PRIMARY KEY (id)
 );
