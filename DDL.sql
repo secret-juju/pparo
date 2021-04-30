@@ -17,18 +17,41 @@ CREATE TABLE account(
 
 CREATE TABLE company(
     id BIGINT AUTO_INCREMENT,
+    ticker_symbol CHAR(6) NOT NULL,
     name VARCHAR(40) NOT NULL,
-    logo VARCHAR(255),
-    average_positivity DECIMAL(5, 2),
+
+    UNIQUE (ticker_symbol),
+
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE stock(
+    id BIGINT AUTO_INCREMENT,
+
+    date DATE NOT NULL,
+    closing_price BIGINT NOT NULL,
+    difference_from_yesterday BIGINT NOT NULL,
+    fluctuation_rate DECIMAL(5, 2),
+    opening_price BIGINT NOT NULL,
+    high_price BIGINT NOT NULL,
+    low_price BIGINT NOT NULL,
+    market_capitalization BIGINT NOT NULL,
+
+    company_id BIGINT NOT NULL,
+
+    FOREIGN KEY (company_id) REFERENCES company(id),
 
     PRIMARY KEY (id)
 );
 
 CREATE TABLE news(
     id BIGINT AUTO_INCREMENT,
-    company_id BIGINT NOT NULL,
+
     content MEDIUMTEXT NOT NULL,
     positivity DECIMAL(5, 2),
+    published_date DATETIME NOT NULL,
+
+    company_id BIGINT NOT NULL,
 
     FOREIGN KEY (company_id) REFERENCES company(id),
 
@@ -37,6 +60,7 @@ CREATE TABLE news(
 
 CREATE TABLE bookmark(
     id BIGINT AUTO_INCREMENT,
+
     account_id BIGINT NOT NULL,
     company_id BIGINT NOT NULL,
 
