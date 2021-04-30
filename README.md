@@ -4,4 +4,4 @@
 뉴스를 기반으로한 주식 추천 서비스
 
 ## 데이터베이스 구조
-![Diagrams](https://user-images.githubusercontent.com/48639421/112247904-673e8400-8c98-11eb-823e-8e0588b42996.png)
+![ERD](https://user-images.githubusercontent.com/48639421/116635319-6a184d00-a999-11eb-8df0-6f9a5079bb9b.png)
