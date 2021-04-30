@@ -25,6 +25,17 @@ CREATE TABLE company(
     PRIMARY KEY (id)
 );
 
+CREATE TABLE industry(
+    id BIGINT AUTO_INCREMENT,
+    name VARCHAR(12),
+
+    company_id BIGINT NOT NULL,
+
+    FOREIGN KEY (company_id) REFERENCES company(id),
+
+    PRIMARY KEY (id)
+)
+
 CREATE TABLE stock(
     id BIGINT AUTO_INCREMENT,
 
@@ -48,8 +59,8 @@ CREATE TABLE news(
     id BIGINT AUTO_INCREMENT,
 
     content MEDIUMTEXT NOT NULL,
-    positivity DECIMAL(5, 2),
     published_date DATETIME NOT NULL,
+    positivity BIGINT,
 
     company_id BIGINT NOT NULL,
 
