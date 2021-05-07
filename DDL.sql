@@ -12,6 +12,8 @@ CREATE TABLE account(
     email VARCHAR(28) NOT NULL,
     name VARCHAR(28) NOT NULL,
 
+    UNIQUE (email, name),
+
     PRIMARY KEY (id)
 );
 
@@ -29,12 +31,22 @@ CREATE TABLE industry(
     id BIGINT AUTO_INCREMENT,
     name VARCHAR(12),
 
-    company_id BIGINT NOT NULL,
-
-    FOREIGN KEY (company_id) REFERENCES company(id),
+    UNIQUE (name),
 
     PRIMARY KEY (id)
-)
+);
+
+CREATE TABLE company_industry_affiliation(
+    id BIGINT AUTO_INCREMENT,
+
+    company_id BIGINT NOT NULL,
+    industry_id BIGINT NOT NULL,
+
+    FOREIGN KEY (company_id) REFERENCES company(id),
+    FOREIGN KEY (industry_id) REFERENCES industry(id),
+
+    PRIMARY KEY (id)
+);
 
 CREATE TABLE stock(
     id BIGINT AUTO_INCREMENT,
@@ -50,6 +62,8 @@ CREATE TABLE stock(
 
     company_id BIGINT NOT NULL,
 
+    UNIQUE (date, company_id),
+
     FOREIGN KEY (company_id) REFERENCES company(id),
 
     PRIMARY KEY (id)
@@ -59,10 +73,9 @@ CREATE TABLE news(
     id BIGINT AUTO_INCREMENT,
 
     content MEDIUMTEXT NOT NULL,
-    published_date DATETIME NOT NULL,
     positivity BIGINT,
 
-    company_id BIGINT NOT NULL,
+    company_id BIGINT,
 
     FOREIGN KEY (company_id) REFERENCES company(id),
 
