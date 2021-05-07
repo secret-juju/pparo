@@ -42,6 +42,8 @@ CREATE TABLE company_industry_affiliation(
     company_id BIGINT NOT NULL,
     industry_id BIGINT NOT NULL,
 
+    UNIQUE (company_id, industry_id),
+
     FOREIGN KEY (company_id) REFERENCES company(id),
     FOREIGN KEY (industry_id) REFERENCES industry(id),
 
@@ -87,6 +89,8 @@ CREATE TABLE bookmark(
 
     account_id BIGINT NOT NULL,
     company_id BIGINT NOT NULL,
+
+    UNIQUE (account_id, company_id),
 
     FOREIGN KEY (account_id) REFERENCES account(id),
     FOREIGN KEY (company_id) REFERENCES company(id),
