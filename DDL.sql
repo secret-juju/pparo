@@ -29,7 +29,7 @@ CREATE TABLE company(
 
 CREATE TABLE industry(
     id BIGINT AUTO_INCREMENT,
-    name VARCHAR(12),
+    name VARCHAR(32),
 
     UNIQUE (name),
 
